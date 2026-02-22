@@ -1,0 +1,1441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sulthan E Azam K — Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=DM+Mono:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: #0d0804;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        width: 100%;
+        font-family: "Cormorant Garamond", serif;
+        overflow: hidden;
+      }
+
+      /* ── BACKGROUND ── */
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: radial-gradient(ellipse at center, #2a1a0e 0%, #0d0804 70%);
+      }
+
+      /* ── HINT ── */
+      .hint {
+        position: fixed;
+        top: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "DM Mono", monospace;
+        font-size: 1rem;
+        color: #e8b84b;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        z-index: 50;
+        transition: opacity 0.4s;
+        text-shadow:
+          0 0 18px rgba(232, 184, 75, 0.8),
+          0 0 40px rgba(200, 149, 42, 0.5);
+        animation: glow 1.8s ease-in-out infinite;
+        font-weight: 400;
+      }
+      @keyframes glow {
+        0%,
+        100% {
+          opacity: 0.75;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* ── BOOK CONTAINER ── */
+      .book-wrap {
+        position: relative;
+        z-index: 10;
+        width: 540px;
+        height: 700px;
+      }
+
+      /* ── SPINE ── */
+      .spine {
+        position: absolute;
+        left: -44px;
+        top: 0;
+        width: 44px;
+        height: 700px;
+        background: linear-gradient(180deg, #3d1f10, #1a0c06 50%, #3d1f10);
+        border-right: 2px solid #c8952a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: -4px 0 12px rgba(0, 0, 0, 0.6);
+      }
+      .spine p {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-family: "Playfair Display", serif;
+        color: #c8952a;
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      .spine-line {
+        width: 24px;
+        height: 1px;
+        background: #c8952a;
+        opacity: 0.5;
+        margin: 8px 0;
+      }
+
+      /* ── COVER ── */
+      #cover {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        background: linear-gradient(
+          135deg,
+          #1a0f08,
+          #2c1810 40%,
+          #1a0f08 80%,
+          #0d0804
+        );
+        border: 1px solid rgba(200, 149, 42, 0.35);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transform-origin: left center;
+        transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+        box-shadow:
+          6px 0 30px rgba(0, 0, 0, 0.7),
+          inset 0 0 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+      #cover.flipped {
+        transform: perspective(1400px) rotateY(-175deg);
+        pointer-events: none;
+      }
+      .cborder {
+        position: absolute;
+        inset: 14px;
+        border: 1px solid rgba(200, 149, 42, 0.35);
+        pointer-events: none;
+      }
+      .cborder2 {
+        position: absolute;
+        inset: 20px;
+        border: 1px solid rgba(200, 149, 42, 0.12);
+        pointer-events: none;
+      }
+      .c-tl,
+      .c-tr,
+      .c-bl,
+      .c-br {
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        border-color: #c8952a;
+        border-style: solid;
+        opacity: 0.7;
+      }
+      .c-tl {
+        top: 20px;
+        left: 20px;
+        border-width: 2px 0 0 2px;
+      }
+      .c-tr {
+        top: 20px;
+        right: 20px;
+        border-width: 2px 2px 0 0;
+      }
+      .c-bl {
+        bottom: 20px;
+        left: 20px;
+        border-width: 0 0 2px 2px;
+      }
+      .c-br {
+        bottom: 20px;
+        right: 20px;
+        border-width: 0 2px 2px 0;
+      }
+      .cover-circle {
+        width: 80px;
+        height: 80px;
+        border: 2px solid #c8952a;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 22px;
+        position: relative;
+      }
+      .cover-circle::before {
+        content: "";
+        position: absolute;
+        inset: 7px;
+        border: 1px solid rgba(200, 149, 42, 0.3);
+        border-radius: 50%;
+      }
+      .cover-circle span {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: #e8b84b;
+        font-style: italic;
+      }
+      .cover-name {
+        font-family: "Playfair Display", serif;
+        font-size: 2.1rem;
+        color: #e8b84b;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 6px;
+      }
+      .cover-div {
+        width: 100px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #c8952a, transparent);
+        margin: 14px auto;
+      }
+      .cover-sub {
+        font-style: italic;
+        color: rgba(200, 149, 42, 0.6);
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+        text-align: center;
+        margin-bottom: 24px;
+      }
+      .cover-tags {
+        font-size: 0.78rem;
+        color: rgba(232, 184, 75, 0.7);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      /* ── PAGES STACK ── */
+      #pages {
+        position: absolute;
+        inset: 0;
+        background: #f5efe0;
+        overflow: hidden;
+      }
+      /* right edge texture */
+      #pages::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 5px;
+        z-index: 10;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+          180deg,
+          #e8dfc8 0,
+          #f5efe0 2px,
+          #e8dfc8 4px
+        );
+      }
+
+      /* ── SINGLE PAGE ── */
+      .page {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+        display: flex;
+      }
+      .page.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      /* left click zone */
+      .lz {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        z-index: 5;
+        cursor: pointer;
+        display: flex;
+        align-items: flex-end;
+        padding: 0 0 14px 14px;
+      }
+      .lz:hover {
+        background: rgba(200, 149, 42, 0.04);
+      }
+      .lz span {
+        font-family: "DM Mono", monospace;
+        font-size: 0.58rem;
+        color: rgba(200, 149, 42, 0.35);
+        letter-spacing: 1px;
+        pointer-events: none;
+        transition: color 0.2s;
+      }
+      .lz:hover span {
+        color: rgba(200, 149, 42, 0.8);
+      }
+
+      /* right click zone */
+      .rz {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        z-index: 5;
+        cursor: pointer;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 0 14px 14px 0;
+      }
+      .rz:hover {
+        background: rgba(200, 149, 42, 0.04);
+      }
+      .rz span {
+        font-family: "DM Mono", monospace;
+        font-size: 0.58rem;
+        color: rgba(200, 149, 42, 0.35);
+        letter-spacing: 1px;
+        pointer-events: none;
+        transition: color 0.2s;
+      }
+      .rz:hover span {
+        color: rgba(200, 149, 42, 0.8);
+      }
+
+      /* page content */
+      .pc {
+        position: absolute;
+        inset: 0;
+        padding: 44px 46px 70px 58px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 3;
+        pointer-events: none;
+        /* paper lines */
+        background: repeating-linear-gradient(
+          180deg,
+          transparent 0,
+          transparent 28px,
+          rgba(0, 0, 0, 0.04) 28px,
+          rgba(0, 0, 0, 0.045) 29px
+        );
+      }
+      /* red margin line */
+      .pc::before {
+        content: "";
+        position: absolute;
+        left: 46px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(180, 60, 60, 0.2);
+      }
+      /* allow text selection & link clicks */
+      .pc * {
+        pointer-events: all;
+      }
+
+      /* PAGE TYPOGRAPHY */
+      .pg-head {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 22px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(200, 149, 42, 0.3);
+      }
+      .pg-chapter {
+        font-family: "DM Mono", monospace;
+        font-size: 0.62rem;
+        color: #c8952a;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      .pg-num {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 0.85rem;
+        color: #4a3f2f;
+      }
+      .pg-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.9rem;
+        color: #1a1208;
+        line-height: 1.1;
+        margin-bottom: 4px;
+      }
+      .pg-title em {
+        color: #c8952a;
+        font-style: italic;
+      }
+      .pg-lead {
+        font-size: 1rem;
+        color: #4a3f2f;
+        line-height: 1.7;
+        margin-bottom: 16px;
+        font-style: italic;
+      }
+      .pg-body {
+        font-size: 0.93rem;
+        color: #1a1208;
+        line-height: 1.9;
+      }
+      .pg-div {
+        width: 55px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #c8952a, transparent);
+        margin: 14px 0;
+      }
+      .dropcap::first-letter {
+        font-family: "Playfair Display", serif;
+        font-size: 3.2rem;
+        font-weight: 900;
+        float: left;
+        line-height: 0.8;
+        margin-right: 6px;
+        margin-top: 6px;
+        color: #c8952a;
+      }
+
+      /* STATS */
+      .stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .stat {
+        background: rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(200, 149, 42, 0.2);
+        padding: 14px;
+        text-align: center;
+        border-radius: 3px;
+      }
+      .stat-n {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        color: #c8952a;
+        font-weight: 700;
+        display: block;
+      }
+      .stat-l {
+        font-family: "DM Mono", monospace;
+        font-size: 0.6rem;
+        color: #4a3f2f;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      /* SERVICE GRID */
+      .sgrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .sitem {
+        background: rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(200, 149, 42, 0.15);
+        padding: 10px;
+        border-radius: 3px;
+      }
+      .sitem h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 0.85rem;
+        color: #1a1208;
+        margin-bottom: 3px;
+      }
+      .sitem p {
+        font-size: 0.75rem;
+        color: #4a3f2f;
+        line-height: 1.5;
+      }
+
+      /* SKILLS */
+      .sk-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 9px;
+      }
+      .sk-name {
+        width: 120px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.68rem;
+        color: #4a3f2f;
+        flex-shrink: 0;
+      }
+      .sk-track {
+        flex: 1;
+        height: 5px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .sk-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #c8952a, #e8b84b);
+        border-radius: 3px;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.9s ease 0.2s;
+      }
+      .page.active .sk-fill {
+        transform: scaleX(1);
+      }
+      .sk-pct {
+        font-family: "DM Mono", monospace;
+        font-size: 0.65rem;
+        color: #c8952a;
+        width: 30px;
+        text-align: right;
+      }
+
+      /* EDU */
+      .eitem {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+      }
+      .eitem:last-child {
+        border: none;
+      }
+      .edeg {
+        font-family: "Playfair Display", serif;
+        font-size: 0.95rem;
+        color: #1a1208;
+        font-weight: 700;
+      }
+      .esch {
+        font-size: 0.8rem;
+        color: #4a3f2f;
+        font-style: italic;
+      }
+      .emeta {
+        font-family: "DM Mono", monospace;
+        font-size: 0.65rem;
+        color: #c8952a;
+        margin-top: 2px;
+      }
+      .epoints {
+        margin-top: 5px;
+        list-style: none;
+        padding: 0;
+      }
+      .epoints li {
+        font-size: 0.78rem;
+        color: #4a3f2f;
+        line-height: 1.6;
+        padding-left: 12px;
+        position: relative;
+      }
+      .epoints li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: #c8952a;
+        opacity: 0.6;
+      }
+
+      /* TIMELINE */
+      .tlitem {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 18px;
+        position: relative;
+      }
+      .tldot {
+        width: 9px;
+        height: 9px;
+        border: 2px solid #c8952a;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 5px;
+        background: #f5efe0;
+        position: relative;
+        z-index: 1;
+      }
+      .tlline {
+        position: absolute;
+        left: 4px;
+        top: 14px;
+        bottom: -18px;
+        width: 1px;
+        background: rgba(200, 149, 42, 0.25);
+      }
+      .tlitem:last-child .tlline {
+        display: none;
+      }
+      .tlrole {
+        font-family: "Playfair Display", serif;
+        font-size: 0.95rem;
+        color: #1a1208;
+        font-weight: 700;
+      }
+      .tlco {
+        font-size: 0.78rem;
+        color: #c8952a;
+        font-style: italic;
+        margin-bottom: 2px;
+      }
+      .tldur {
+        font-family: "DM Mono", monospace;
+        font-size: 0.65rem;
+        color: #4a3f2f;
+        margin-bottom: 3px;
+      }
+      .tldesc {
+        font-size: 0.8rem;
+        color: #4a3f2f;
+        line-height: 1.6;
+      }
+
+      /* PROJECTS */
+      .pcard {
+        background: rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(200, 149, 42, 0.2);
+        border-radius: 3px;
+        padding: 12px 14px;
+        margin-bottom: 12px;
+      }
+      .pname {
+        font-family: "Playfair Display", serif;
+        font-size: 0.93rem;
+        color: #1a1208;
+        font-weight: 700;
+        margin-bottom: 3px;
+      }
+      .pdesc {
+        font-size: 0.78rem;
+        color: #4a3f2f;
+        line-height: 1.55;
+      }
+      .ptag {
+        display: inline-block;
+        font-family: "DM Mono", monospace;
+        font-size: 0.6rem;
+        color: #c8952a;
+        border: 1px solid rgba(200, 149, 42, 0.35);
+        padding: 2px 5px;
+        border-radius: 2px;
+        margin-top: 5px;
+        margin-right: 3px;
+      }
+
+      /* CONTACT */
+      .crow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .cicon {
+        width: 30px;
+        height: 30px;
+        border: 1px solid rgba(200, 149, 42, 0.4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+      }
+      .clabel {
+        font-family: "DM Mono", monospace;
+        font-size: 0.62rem;
+        color: #4a3f2f;
+        display: block;
+      }
+      .cval {
+        font-size: 0.85rem;
+        color: #1a1208;
+      }
+
+      /* NAV BAR */
+      #nav {
+        position: fixed;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(20, 10, 4, 0.96);
+        border: 1px solid rgba(200, 149, 42, 0.3);
+        padding: 9px 18px;
+        border-radius: 40px;
+        z-index: 50;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+      }
+      #nav.show {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .nbtn {
+        background: none;
+        border: 1px solid rgba(200, 149, 42, 0.35);
+        color: #c8952a;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .nbtn:hover {
+        background: rgba(200, 149, 42, 0.15);
+      }
+      .nbtn:disabled {
+        opacity: 0.2;
+        cursor: not-allowed;
+      }
+      .ntab {
+        background: none;
+        border: 1px solid rgba(200, 149, 42, 0.2);
+        color: rgba(200, 149, 42, 0.5);
+        font-family: "DM Mono", monospace;
+        font-size: 0.58rem;
+        padding: 3px 9px;
+        border-radius: 20px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .ntab:hover,
+      .ntab.on {
+        background: rgba(200, 149, 42, 0.15);
+        color: #c8952a;
+        border-color: #c8952a;
+      }
+      .npg {
+        font-family: "DM Mono", monospace;
+        font-size: 0.62rem;
+        color: rgba(200, 149, 42, 0.5);
+        min-width: 36px;
+        text-align: center;
+      }
+
+      /* CLOSE BTN */
+      #closebtn {
+        position: fixed;
+        top: 22px;
+        right: 22px;
+        background: rgba(20, 10, 4, 0.9);
+        border: 1px solid rgba(200, 149, 42, 0.3);
+        color: #c8952a;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 0.95rem;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+        transition: all 0.2s;
+      }
+      #closebtn:hover {
+        background: rgba(200, 149, 42, 0.15);
+      }
+      #closebtn.show {
+        display: flex;
+      }
+
+      /* SHADOW */
+      .bshadow {
+        position: absolute;
+        bottom: -36px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 480px;
+        height: 36px;
+        background: radial-gradient(
+          ellipse,
+          rgba(0, 0, 0, 0.55) 0%,
+          transparent 70%
+        );
+        filter: blur(6px);
+        pointer-events: none;
+      }
+
+      /* scrollbar */
+      .pc::-webkit-scrollbar {
+        width: 3px;
+      }
+      .pc::-webkit-scrollbar-thumb {
+        background: rgba(200, 149, 42, 0.3);
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg"></div>
+
+    <div style="position: relative; z-index: 10">
+      <div class="book-wrap">
+        <!-- SPINE -->
+        <div class="spine">
+          <div class="spine-line"></div>
+          <p>Sulthan E Azam K &nbsp;·&nbsp; Portfolio</p>
+          <div class="spine-line"></div>
+        </div>
+
+        <!-- PAGES BEHIND COVER -->
+        <div id="pages">
+          <!-- PAGE 1 — ABOUT -->
+          <div class="page active" id="pg0">
+            <div class="lz" id="lz0"><span>⌂ home</span></div>
+            <div class="rz" id="rz0"><span>next ›</span></div>
+            <div class="pc">
+              <div class="pg-head">
+                <span class="pg-chapter">Chapter I</span
+                ><span class="pg-num">1 / 7</span>
+              </div>
+              <h2 class="pg-title">Who Am <em>I?</em></h2>
+              <div class="pg-div"></div>
+              <p class="pg-lead">
+                A passionate Design Engineer bridging precision mechanics with
+                spatial creativity.
+              </p>
+              <p class="pg-body dropcap">
+                Hi, I'm Shaikh Mohammed <strong>Sulthan E Azam K</strong>olar
+                Qadri — a detail-oriented Design Engineer with hands-on
+                experience in 3D modeling, product analysis, and CAD tools. With
+                a strong foundation in mechanical engineering and 300+
+                successful projects, I contribute to innovative,
+                technology-driven teams.
+              </p>
+              <br />
+              <p class="pg-body">
+                Over the past year, I worked with
+                <strong>Calpion Software Technologies Pvt. Ltd.</strong>,
+                involved in 3D design and equipment enhancement using SolidWorks
+                and AutoCAD. I've completed internships at Technosoft Computer
+                Training Institute and GAD Equipment, gaining expertise in
+                CATIA, Fusion 360, and CIM.
+              </p>
+              <div class="stats">
+                <div class="stat">
+                  <span class="stat-n">356+</span
+                  ><span class="stat-l">Projects</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-n">30+</span
+                  ><span class="stat-l">Clients</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-n">10+</span
+                  ><span class="stat-l">Partners</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-n">309</span
+                  ><span class="stat-l">Coffees ☕</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAGE 2 — SERVICES -->
+          <div class="page" id="pg1">
+            <div class="lz" id="lz1"><span>‹ prev</span></div>
+            <div class="rz" id="rz1"><span>next ›</span></div>
+            <div class="pc">
+              <div class="pg-head">
+                <span class="pg-chapter">Chapter II</span
+                ><span class="pg-num">2 / 7</span>
+              </div>
+              <h2 class="pg-title">What I <em>Do</em></h2>
+              <div class="pg-div"></div>
+              <p class="pg-lead">
+                Core areas of expertise and services I provide.
+              </p>
+              <div class="sgrid">
+                <div class="sitem">
+                  <h4>Innovative Product Design</h4>
+                  <p>
+                    Creating practical mechanical products for real-world
+                    applications.
+                  </p>
+                </div>
+                <div class="sitem">
+                  <h4>Technical Documentation</h4>
+                  <p>
+                    Precise 2D drawings, BOMs, and GD&amp;T-compliant docs for
+                    production.
+                  </p>
+                </div>
+                <div class="sitem">
+                  <h4>Design for Manufacturing</h4>
+                  <p>Models optimized for manufacturability and performance.</p>
+                </div>
+                <div class="sitem">
+                  <h4>Sheet Metal Design</h4>
+                  <p>
+                    Specializing in sheet metal components for industrial use.
+                  </p>
+                </div>
+                <div class="sitem">
+                  <h4>Simulation &amp; Analysis</h4>
+                  <p>
+                    FEA validation in Fusion 360 and SolidWorks before
+                    production.
+                  </p>
+                </div>
+                <div class="sitem">
+                  <h4>CAD Modeling</h4>
+                  <p>
+                    3D modeling in SolidWorks, CATIA, AutoCAD, and Fusion 360.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAGE 3 — SKILLS -->
+          <div class="page" id="pg2">
+            <div class="lz" id="lz2"><span>‹ prev</span></div>
+            <div class="rz" id="rz2"><span>next ›</span></div>
+            <div class="pc">
+              <div class="pg-head">
+                <span class="pg-chapter">Chapter III</span
+                ><span class="pg-num">3 / 7</span>
+              </div>
+              <h2 class="pg-title">My <em>Skills</em></h2>
+              <div class="pg-div"></div>
+              <p class="pg-lead">
+                Specializing in mechanical design and CAD-based product
+                development.
+              </p>
+              <div style="margin-top: 12px">
+                <div class="sk-row">
+                  <span class="sk-name">SolidWorks</span>
+                  <div class="sk-track">
+                    <div class="sk-fill" style="width: 90%"></div>
+                  </div>
+                  <span class="sk-pct">90%</span>
+                </div>
+                <div class="sk-row">
+                  <span class="sk-name">CATIA</span>
+                  <div class="sk-track">
+                    <div class="sk-fill" style="width: 85%"></div>
+                  </div>
+                  <span class="sk-pct">85%</span>
+                </div>
+                <div class="sk-row">
+                  <span class="sk-name">AutoCAD</span>
+                  <div class="sk-track">
+                    <div class="sk-fill" style="width: 80%"></div>
+                  </div>
+                  <span class="sk-pct">80%</span>
+                </div>
+                <div class="sk-row">
+                  <span class="sk-name">GD&amp;T &amp; Drafting</span>
+                  <div class="sk-track">
+                    <div class="sk-fill" style="width: 80%"></div>
+                  </div>
+                  <span class="sk-pct">80%</span>
+                </div>
+                <div class="sk-row">
+                  <span class="sk-name">Fusion 360</span>
+                  <div class="sk-track">
+                    <div class="sk-fill" style="width: 75%"></div>
+                  </div>
+                  <span class="sk-pct">75%</span>
+                </div>
+                <div class="sk-row">
+                  <span class="sk-name">Sheet Metal</span>
+                  <div class="sk-track">
+                    <div class="sk-fill" style="width: 70%"></div>
+                  </div>
+                  <span class="sk-pct">70%</span>
+                </div>
+                <div class="sk-row">
+                  <span class="sk-name">Product Design</span>
+                  <div class="sk-track">
+                    <div class="sk-fill" style="width: 85%"></div>
+                  </div>
+                  <span class="sk-pct">85%</span>
+                </div>
+                <div class="sk-row">
+                  <span class="sk-name">3D Modeling</span>
+                  <div class="sk-track">
+                    <div class="sk-fill" style="width: 88%"></div>
+                  </div>
+                  <span class="sk-pct">88%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAGE 4 — EDUCATION -->
+          <div class="page" id="pg3">
+            <div class="lz" id="lz3"><span>‹ prev</span></div>
+            <div class="rz" id="rz3"><span>next ›</span></div>
+            <div class="pc">
+              <div class="pg-head">
+                <span class="pg-chapter">Chapter IV</span
+                ><span class="pg-num">4 / 7</span>
+              </div>
+              <h2 class="pg-title">My <em>Education</em></h2>
+              <div class="pg-div"></div>
+              <div class="eitem">
+                <div class="edeg">Bachelor of Engineering — Mechanical</div>
+                <div class="esch">
+                  Vijaya Vittala Institute of Technology, Bangalore — VTU
+                </div>
+                <div class="emeta">CGPA: 7.81 / 10 &nbsp;·&nbsp; 2024</div>
+                <ul class="epoints">
+                  <li>Thermodynamics, Fluid Mechanics, Machine Design</li>
+                  <li>Design projects in SolidWorks, CATIA &amp; AutoCAD</li>
+                  <li>
+                    Mechanical drafting, 3D modeling &amp; GD&amp;T practices
+                  </li>
+                </ul>
+              </div>
+              <div class="eitem">
+                <div class="edeg">Pre-University Course — PCMB</div>
+                <div class="esch">
+                  SES Vidya Mandir PU College, Sandur, Bellary
+                </div>
+                <div class="emeta">
+                  64.33% &nbsp;·&nbsp; 2020 &nbsp;·&nbsp; DPUE Board
+                </div>
+                <ul class="epoints">
+                  <li>Physics, Chemistry, Mathematics, Biology</li>
+                  <li>Karnataka State Board — 11th &amp; 12th Standard</li>
+                </ul>
+              </div>
+              <div class="eitem">
+                <div class="edeg">SSLC — 10th Standard</div>
+                <div class="esch">
+                  Sri Shaileshwara Vidya Kendra School, Sandur
+                </div>
+                <div class="emeta">
+                  67.72% &nbsp;·&nbsp; 2018 &nbsp;·&nbsp; KSEEB Board
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAGE 5 — EXPERIENCE -->
+          <div class="page" id="pg4">
+            <div class="lz" id="lz4"><span>‹ prev</span></div>
+            <div class="rz" id="rz4"><span>next ›</span></div>
+            <div class="pc">
+              <div class="pg-head">
+                <span class="pg-chapter">Chapter V</span
+                ><span class="pg-num">5 / 7</span>
+              </div>
+              <h2 class="pg-title">Work <em>Experience</em></h2>
+              <div class="pg-div"></div>
+              <div class="tlitem">
+                <div style="position: relative; flex-shrink: 0">
+                  <div class="tldot"></div>
+                  <div class="tlline"></div>
+                </div>
+                <div>
+                  <div class="tlrole">Design Engineer</div>
+                  <div class="tlco">
+                    Calpion Software Technologies Pvt. Ltd.
+                  </div>
+                  <div class="tldur" id="caldur">Calculating...</div>
+                  <div class="tldesc">
+                    3D modeling in SolidWorks, equipment enhancement, GD&amp;T
+                    drafting, 2D design in AutoCAD. Quality control and
+                    cross-functional coordination.
+                  </div>
+                </div>
+              </div>
+              <div class="tlitem">
+                <div style="position: relative; flex-shrink: 0">
+                  <div class="tldot"></div>
+                  <div class="tlline"></div>
+                </div>
+                <div>
+                  <div class="tlrole">Trainee</div>
+                  <div class="tlco">Technosoft Computer Training Institute</div>
+                  <div class="tldur">6 months</div>
+                  <div class="tldesc">
+                    AutoCAD (2D), SolidWorks (modeling, assembly, sheet metal),
+                    CATIA (part design, surface modeling, drafting).
+                  </div>
+                </div>
+              </div>
+              <div class="tlitem">
+                <div style="position: relative; flex-shrink: 0">
+                  <div class="tldot"></div>
+                  <div class="tlline"></div>
+                </div>
+                <div>
+                  <div class="tlrole">Design Intern</div>
+                  <div class="tlco">GAD Equipment</div>
+                  <div class="tldur">2 months</div>
+                  <div class="tldesc">
+                    Kitchen equipment warehouse, AutoCAD 2D design, supporting
+                    laser cutting operations.
+                  </div>
+                </div>
+              </div>
+              <div class="tlitem">
+                <div style="position: relative; flex-shrink: 0">
+                  <div class="tldot"></div>
+                </div>
+                <div>
+                  <div class="tlrole">Maintenance Intern</div>
+                  <div class="tlco">Arun Enterprise</div>
+                  <div class="tldur">1 month</div>
+                  <div class="tldesc">
+                    Mechanical equipment maintenance and product support in
+                    construction-related applications.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAGE 6 — PROJECTS -->
+          <div class="page" id="pg5">
+            <div class="lz" id="lz5"><span>‹ prev</span></div>
+            <div class="rz" id="rz5"><span>next ›</span></div>
+            <div class="pc">
+              <div class="pg-head">
+                <span class="pg-chapter">Chapter VI</span
+                ><span class="pg-num">6 / 7</span>
+              </div>
+              <h2 class="pg-title">My <em>Projects</em></h2>
+              <div class="pg-div"></div>
+              <p class="pg-lead">
+                Selected 3D design and AR projects from my engineering journey.
+              </p>
+              <div class="pcard">
+                <div class="pname">
+                  Mechanical Assembly — Final Year Project
+                </div>
+                <div class="pdesc">
+                  Mechanical assembly design created during engineering studies
+                  using SolidWorks, converted for 3D web and AR display.
+                </div>
+                <span class="ptag">SolidWorks</span
+                ><span class="ptag">Assembly</span><span class="ptag">AR</span>
+              </div>
+              <div class="pcard">
+                <div class="pname">Aeroplane Model</div>
+                <div class="pdesc">
+                  Modeled during training at Technosoft Computer Institute,
+                  focused on aeronautical design and 3D modeling practice.
+                </div>
+                <span class="ptag">SolidWorks</span
+                ><span class="ptag">Aeronautical</span>
+              </div>
+              <div class="pcard">
+                <div class="pname">Urban City Map — Calpion</div>
+                <div class="pdesc">
+                  City model at Calpion Software Technologies for map-based
+                  equipment visualization and simulation testing.
+                </div>
+                <span class="ptag">3D City</span
+                ><span class="ptag">Simulation</span>
+              </div>
+              <div class="pcard">
+                <div class="pname">3D City Test Environment</div>
+                <div class="pdesc">
+                  Test model of a 3D city environment for simulation and visual
+                  testing at Calpion Software Technologies.
+                </div>
+                <span class="ptag">Environment</span
+                ><span class="ptag">Visual Testing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAGE 7 — CONTACT -->
+          <div class="page" id="pg6">
+            <div class="lz" id="lz6"><span>‹ prev</span></div>
+            <div class="rz" id="rz6"><span>⌂ home</span></div>
+            <div class="pc">
+              <div class="pg-head">
+                <span class="pg-chapter">Chapter VII</span
+                ><span class="pg-num">7 / 7</span>
+              </div>
+              <h2 class="pg-title">Get In <em>Touch</em></h2>
+              <div class="pg-div"></div>
+              <p class="pg-lead">
+                Always open to new opportunities and collaborations.
+              </p>
+              <div class="crow">
+                <div class="cicon">📞</div>
+                <div>
+                  <span class="clabel">Phone</span
+                  ><span class="cval">+91 8660884069</span>
+                </div>
+              </div>
+              <div class="crow">
+                <div class="cicon">✉️</div>
+                <div>
+                  <span class="clabel">Email</span
+                  ><span class="cval">sulthaneazamk0507927@gmail.com</span>
+                </div>
+              </div>
+              <div class="crow">
+                <div class="cicon">📍</div>
+                <div>
+                  <span class="clabel">Location</span
+                  ><span class="cval">Bangalore, India</span>
+                </div>
+              </div>
+              <div class="crow">
+                <div class="cicon">💼</div>
+                <div>
+                  <span class="clabel">LinkedIn</span
+                  ><span class="cval">sulthan-e-azam-k-08235126b</span>
+                </div>
+              </div>
+              <div class="crow">
+                <div class="cicon">🌐</div>
+                <div>
+                  <span class="clabel">3D Portfolio</span
+                  ><span class="cval">Sulthan's AR 3D Models</span>
+                </div>
+              </div>
+              <div class="pg-div" style="margin-top: 18px"></div>
+              <p
+                style="
+                  font-style: italic;
+                  font-size: 0.88rem;
+                  color: #4a3f2f;
+                  line-height: 1.7;
+                  margin-top: 14px;
+                "
+              >
+                Web development by <strong>Mr. Ali Akbar K</strong><br />3D
+                design &amp; portfolio by <strong>Sulthan E Azam K</strong>
+              </p>
+              <p
+                style="
+                  font-family: &quot;DM Mono&quot;, monospace;
+                  font-size: 0.62rem;
+                  color: #c8952a;
+                  opacity: 0.5;
+                  margin-top: 10px;
+                  letter-spacing: 1px;
+                "
+              >
+                © <span id="yr"></span> ALL RIGHTS RESERVED
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- /pages -->
+
+        <!-- FRONT COVER — on top of everything -->
+        <div id="cover">
+          <div class="cborder"></div>
+          <div class="cborder2"></div>
+          <div class="c-tl"></div>
+          <div class="c-tr"></div>
+          <div class="c-bl"></div>
+          <div class="c-br"></div>
+          <div class="cover-circle"><span>S</span></div>
+          <div class="cover-name">Sulthan<br />E Azam K</div>
+          <div class="cover-div"></div>
+          <div class="cover-sub">Design Engineer</div>
+          <div class="cover-tags">3D Modeling · CAD · AR · Spatial Design</div>
+        </div>
+
+        <div class="bshadow"></div>
+      </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav id="nav">
+      <button class="nbtn" id="pb" disabled>&#8592;</button>
+      <button class="ntab on" data-p="0">About</button>
+      <button class="ntab" data-p="1">Services</button>
+      <button class="ntab" data-p="2">Skills</button>
+      <button class="ntab" data-p="3">Education</button>
+      <button class="ntab" data-p="4">Experience</button>
+      <button class="ntab" data-p="5">Projects</button>
+      <button class="ntab" data-p="6">Contact</button>
+      <span class="npg" id="npg">1 / 7</span>
+      <button class="nbtn" id="nb">&#8594;</button>
+    </nav>
+
+    <button id="closebtn">✕</button>
+
+    <script>
+      (function () {
+        var cur = 0;
+        var TOTAL = 7;
+        var open = false;
+
+        var cover = document.getElementById("cover");
+        var nav = document.getElementById("nav");
+        var closebtn = document.getElementById("closebtn");
+
+        var pb = document.getElementById("pb");
+        var nb = document.getElementById("nb");
+        var npg = document.getElementById("npg");
+        var tabs = document.querySelectorAll(".ntab");
+
+        // Calpion auto-duration
+        var start = new Date(2024, 5, 1);
+        var now = new Date();
+        var yrs = now.getFullYear() - start.getFullYear();
+        var mos = now.getMonth() - start.getMonth();
+        if (mos < 0) {
+          yrs--;
+          mos += 12;
+        }
+        var dur = "";
+        if (yrs > 0) dur += yrs + " yr" + (yrs > 1 ? "s" : "") + " ";
+        if (mos > 0) dur += mos + " month" + (mos > 1 ? "s" : "");
+        if (!dur.trim()) dur = "Less than a month";
+        document.getElementById("caldur").textContent =
+          dur.trim() + " · Jun 2024 – Present";
+        document.getElementById("yr").textContent = now.getFullYear();
+
+        function goTo(idx) {
+          if (idx < 0 || idx >= TOTAL) return;
+          document.getElementById("pg" + cur).classList.remove("active");
+          cur = idx;
+          document.getElementById("pg" + cur).classList.add("active");
+          tabs.forEach(function (t) {
+            t.classList.toggle("on", parseInt(t.dataset.p) === cur);
+          });
+          npg.textContent = cur + 1 + " / " + TOTAL;
+          pb.disabled = cur === 0;
+          nb.disabled = cur === TOTAL - 1;
+        }
+
+        function openBook() {
+          if (open) return;
+          open = true;
+          cover.classList.add("flipped");
+          nav.classList.add("show");
+          closebtn.classList.add("show");
+          goTo(0);
+        }
+
+        function closeBook() {
+          open = false;
+          cover.classList.remove("flipped");
+          nav.classList.remove("show");
+          closebtn.classList.remove("show");
+          goTo(0);
+        }
+
+        // Cover click
+        cover.addEventListener("click", openBook);
+
+        // Close
+        closebtn.addEventListener("click", closeBook);
+
+        // Nav arrows
+        pb.addEventListener("click", function () {
+          goTo(cur - 1);
+        });
+        nb.addEventListener("click", function () {
+          goTo(cur + 1);
+        });
+
+        // Nav tabs
+        tabs.forEach(function (t) {
+          t.addEventListener("click", function () {
+            goTo(parseInt(t.dataset.p));
+          });
+        });
+
+        // LEFT zones
+        document.getElementById("lz0").addEventListener("click", function () {
+          closeBook();
+        });
+        document.getElementById("lz1").addEventListener("click", function () {
+          goTo(0);
+        });
+        document.getElementById("lz2").addEventListener("click", function () {
+          goTo(1);
+        });
+        document.getElementById("lz3").addEventListener("click", function () {
+          goTo(2);
+        });
+        document.getElementById("lz4").addEventListener("click", function () {
+          goTo(3);
+        });
+        document.getElementById("lz5").addEventListener("click", function () {
+          goTo(4);
+        });
+        document.getElementById("lz6").addEventListener("click", function () {
+          goTo(5);
+        });
+
+        // RIGHT zones
+        document.getElementById("rz0").addEventListener("click", function () {
+          goTo(1);
+        });
+        document.getElementById("rz1").addEventListener("click", function () {
+          goTo(2);
+        });
+        document.getElementById("rz2").addEventListener("click", function () {
+          goTo(3);
+        });
+        document.getElementById("rz3").addEventListener("click", function () {
+          goTo(4);
+        });
+        document.getElementById("rz4").addEventListener("click", function () {
+          goTo(5);
+        });
+        document.getElementById("rz5").addEventListener("click", function () {
+          goTo(6);
+        });
+        document.getElementById("rz6").addEventListener("click", function () {
+          closeBook();
+        });
+
+        // Keyboard
+        document.addEventListener("keydown", function (e) {
+          if (!open) return;
+          if (e.key === "ArrowRight") {
+            if (cur < TOTAL - 1) goTo(cur + 1);
+            else closeBook();
+          }
+          if (e.key === "ArrowLeft") {
+            if (cur > 0) goTo(cur - 1);
+            else closeBook();
+          }
+          if (e.key === "Escape") closeBook();
+        });
+      })();
+    </script>
+  </body>
+</html>
