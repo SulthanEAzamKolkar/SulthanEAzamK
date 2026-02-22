@@ -1,298 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sulthan's 3D Models</title>
- <link rel="shotcut icon" sizes="20x20" href="https://media.licdn.com/dms/image/v2/D5603AQHnI4yqsp1WUQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1705419441321?e=1752105600&v=beta&t=eTZJm4PR24h_gb5Hs3pLWUR1JVNvxYwdXMVtOy5S-ok">
-  <link rel="stylesheet" href="i1.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-  <!-- model-viewer web component -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <!-- QRious library for QR code generation -->
-  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sulthan's 3D Models</title>
+    <link
+      rel="shortcut icon"
+      sizes="20x20"
+      href="https://media.licdn.com/dms/image/v2/D5603AQHnI4yqsp1WUQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1705419441321?e=1752105600&v=beta&t=eTZJm4PR24h_gb5Hs3pLWUR1JVNvxYwdXMVtOy5S-ok"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/3d.css" />
+  </head>
+  <body>
+    <div id="bg-grid"></div>
+    <div id="bg-orb"></div>
 
-   <link rel="stylesheet" href="./css/loadmodel.css" />
-</head>
-<body>
-<div id="background-animation"></div>
-
-<header class="main-header">
-  <div class="header-container">
-    <div class="logo-section">
-      <img src="./images/about.jpeg" alt="Sulthan's Logo" class="logo-image" />
-      <div class="title-text">
-        <h1>Sulthan's 3D Models</h1>
-        <p>Immersive AR & 3D Experiences</p>
+    <!-- WebXR not supported modal -->
+    <div id="webxr-modal">
+      <div class="modal-box">
+        <h3>🌐 WebXR Not Supported</h3>
+        <p>
+          Your browser or device doesn't support WebXR AR. Try opening this page
+          in <strong>Chrome on Android</strong> with ARCore, or use the
+          <strong>iOS AR button</strong> on iPhone/iPad.
+        </p>
+        <button
+          class="modal-close"
+          onclick="
+            document.getElementById('webxr-modal').classList.remove('active')
+          "
+        >
+          Got it
+        </button>
       </div>
     </div>
-    <div class="icon-links">
-      <a href="https://www.linkedin.com/in/sulthan-e-azam-k-08235126b/" target="_blank" class="icon-link">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="./index.html" target="_blank" class="icon-link">
-        <i class="fas fa-home"></i>
-      </a>
-    </div>
-  </div>
-</header>
 
-
-
-  <!-- 3D Models with AR QR Codes section -->
-<div class="container-wrap">
-  <h1 style="text-align: center; margin-bottom: 30px;">📦 3D Models with AR QR Codes</h1>
-
-
-   <div class="model-block">
-    <h2>🔧 Assem2.glb</h2>
-    <div class="model-qr-flex">
-      <model-viewer 
-        src="https://raw.githubusercontent.com/SulthanEAzamK/Tiller/main/Assem2.glb"
-        alt="Assem2 Model"
-        auto-rotate
-        camera-controls
-        background-color="#f9f9f9"
-      ></model-viewer>
-      <div class="qr-box">
-        <p>Scan to view in AR:</p>
-        <canvas id="qr2"></canvas>
+    <!-- ── HEADER ── -->
+    <header class="main-header">
+      <div class="header-container">
+        <div class="logo-section">
+          <img src="./images/about.jpeg" alt="Sulthan" class="logo-image" />
+          <div class="title-text">
+            <h1>Sulthan's 3D Models</h1>
+            <p>Immersive AR &amp; 3D Experiences</p>
+          </div>
+        </div>
+        <div class="icon-links">
+          <a
+            href="https://www.linkedin.com/in/sulthan-e-azam-k-08235126b/"
+            target="_blank"
+            class="icon-link"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="./index.html" class="icon-link"
+            ><i class="fas fa-home"></i
+          ></a>
+        </div>
       </div>
-        <div>
-        <p><strong>Project:</strong> Final year mechanical assembly design project created during my engineering studies using SolidWorks and converted for 3D web visualization.
-</p>
-      </div>
-    </div>
-  </div>
+    </header>
 
-  <div class="model-block">
-    <h2>✈️ Aeroplane.glb</h2>
-    <div class="model-qr-flex">
-      <model-viewer 
-        src="https://raw.githubusercontent.com/SulthanEAzamK/Tiller/main/Aeroplane.glb"
-        alt="Aeroplane Model"
-        auto-rotate
-        camera-controls
-        background-color="#ffffff"
-      ></model-viewer>
-      <div class="qr-box">
-        <p>Scan to view in AR:</p>
-        <canvas id="qr1"></canvas>
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <div class="hero-badge">
+        <i class="fas fa-cube pulse"></i> AR-Enabled 3D Portfolio
       </div>
-      <div>
-        <p><strong>Project:</strong> Modeled during training at Technosoft Computer Institute, focused on aeronautical design and SolidWorks 3D modeling practice.
-</p>
-      </div>
-    </div>
-  </div>
-
- 
-
-  <div class="model-block">
-    <h2>🗺️ calw_city_map.glb</h2>
-    <div class="model-qr-flex">
-      <model-viewer 
-        src="https://raw.githubusercontent.com/SulthanEAzamK/Tiller/main/calw_city_map.glb"
-        alt="City Map Model"
-        auto-rotate
-        camera-controls
-        background-color="#ffffff"
-      ></model-viewer>
-      <div class="qr-box">
-        <p>Scan to view in AR:</p>
-        <canvas id="qr3"></canvas>
-      </div>
-        <div>
-        <p><strong>Project:</strong> Urban city model developed while working at Calpion Software Technologies, used in map-based equipment visualization tasks.
-</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="model-block">
-    <h2>🏙️ city_test.glb</h2>
-    <div class="model-qr-flex">
-      <model-viewer 
-        src="https://raw.githubusercontent.com/SulthanEAzamK/Tiller/main/city_test.glb"
-        alt="City Test Model"
-        auto-rotate
-        camera-controls
-        background-color="#ffffff"
-      ></model-viewer>
-      <div class="qr-box">
-        <p>Scan to view in AR:</p>
-        <canvas id="qr4"></canvas>
-      </div>
-        <div>
-        <p><strong>Project:</strong> Test model of a 3D city environment created as part of ongoing work at Calpion for simulation and visual testing purposes.
-</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="model-block">
-    <h2>🌍 map_lviv_ukraine.glb</h2>
-    <div class="model-qr-flex">
-      <model-viewer 
-        src="https://raw.githubusercontent.com/SulthanEAzamK/Tiller/main/map_lviv_ukraine.glb"
-        alt="Ukraine Map Model"
-        auto-rotate
-        camera-controls
-        background-color="#ffffff"
-      ></model-viewer>
-      <div class="qr-box">
-        <p>Scan to view in AR:</p>
-        <canvas id="qr5"></canvas>
-      </div>
-        <div>
-        <p></p>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-
-
-</div>
- <footer style="background-color: #222; color: #fff; padding: 40px 20px; font-family: Arial, sans-serif;">
-  
-  <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;">
-    <!-- About Section -->
-    <div style="flex: 1; min-width: 200px; margin-right: 20px;">
-      <h3 style="color: #f182dd;">Sulthan's 3d Models</h3>
-      <p style="font-size: 14px;">A small river named Duden flows by their place and supplies it with the necessary regalia.
-        <p><a href="tel://+91 8660884069" style="color: #fff; font-size: 11px;">
-      <i class="fas fa-phone">  +91 8660884069</i>
-    </a></p>
+      <h1>View Models in <span>Augmented Reality</span></h1>
+      <p>
+        Scan the QR code with your phone, tap the AR button, or launch WebXR
+        directly in your browser — all 3D models load live in AR.
       </p>
-      
-     
-      <a href="http://127.0.0.1:5500/index.html" style="color: #f9b233; text-decoration: none; font-size: 14px;">read more →</a>
-      <div class="row justify-content-center">
-				<div class="col-md-7 ftco-animate text-center">
-					<h3>Have a<span> Question?  </span><br> <a href="https://forms.gle/KiYZt6MmwvS6xwz18" class="btn btn-primary py-3 px-5">Click Here</a> </h3>
-					<p>We will connect you soon</p>
-				</div>
-			</div>
+    </section>
+
+    <!-- ── MODELS ── -->
+    <div class="container-wrap">
+      <p class="section-title">📦 <span>3D Models</span> with AR Launch</p>
+      <div id="models-container"></div>
     </div>
-    <!-- Categories Section -->
-    <div style="flex: 1; min-width: 200px; margin-right: 20px;">
-      <h3 style="color: #fff;">Categories</h3>
-      <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 2;">
-        <li><a href="#" style="color: #fff; text-decoration: none;">Buy & Sell</a></li>
-        <li><a href="#" style="color: #fff; text-decoration: none;">Merchant</a></li>
-        <li><a href="#" style="color: #fff; text-decoration: none;">Giving back</a></li>
-        <li><a href="#" style="color: #fff; text-decoration: none;">Help & Support</a></li>
-      </ul>
-    </div>
-    <!-- Tag Cloud Section -->
-    <!-- Tag Cloud Section -->
-<div style="flex: 1; min-width: 200px; margin-right: 20px;">
-  <h3 style="color: #fff;">Main Persons</h3>
-  <div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 14px;">
-    <a href="#" style="color: #fff; text-decoration: none; background: #bff178; padding: 5px 70px; border-radius: 5px; background-image: url(./images/allaha.png);
-  background-repeat: no-repeat;
-  background-size: cover; 
-  background-position: center;"></a>
-    <a href="https://ali-akbar-k.github.io/PORTFOLIO/" style="color: #fff; text-decoration: none; background: #333; padding: 5px 10px; border-radius: 5px;">Mr. Ali Akbar K</a>
-    <a href="./index.html" style="color: #fff; text-decoration: none; background: #333; padding: 5px 10px; border-radius: 5px;">Mr. Sulthan E Azam K</a>
-    <a href="" style="color: #fff; text-decoration: none; background: #333; padding: 5px 10px; border-radius: 5px;">Games</a>
-    <a href="https://gadequipments.in/" style="color: #fff; text-decoration: none; background: #333; padding: 5px 10px; border-radius: 5px;">GAD Equipments</a>
-    <!-- <a href="#" style="color: #fff; text-decoration: none; background: #333; padding: 5px 10px; border-radius: 5px;">Mr. T Noor Mohammed</a>
-    <a href="#" style="color: #fff; text-decoration: none; background: #333; padding: 5px 10px; border-radius: 5px;">Delicious</a>
-    <a href="#" style="color: #fff; text-decoration: none; background: #333; padding: 5px 10px; border-radius: 5px;">Desserts</a>
-    <a href="#" style="color: #fff; text-decoration: none; background: #333; padding: 5px 10px; border-radius: 5px;">Drinks</a> -->
-  </div>
-  <a href="#" style="color: #f9b233; text-decoration: none; font-size: 14px;">You can contect them →</a>
-</div>
 
-    <!-- Subscribe Section -->
-<div style="flex: 1; min-width: 200px;">
-  <h3 style="color: #fff;">Subscribe</h3>
-  <form style="display: flex; align-items: center;">
-    <input type="email" placeholder="Enter email address" style="padding: 10px; flex: 1; font-size: 14px; border: none; border-radius: 5px 0 0 5px;">
-    <button type="submit" style="background: #f9b233; color: #fff; border: none; padding: 8px; border-radius: 0 5px 5px 0; cursor: pointer;">→</button>
-  </form>
-
-  <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
-    <a href="https://twitter.com" target="_blank" style="color: #fff; text-decoration: none; font-size: 18px;">
-      <i class="fab fa-twitter"></i>
-    </a>
-    <a href="https://facebook.com" target="_blank" style="color: #fff; text-decoration: none; font-size: 18px;">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://instagram.com" target="_blank" style="color: #fff; text-decoration: none; font-size: 18px;">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="mailto:sulthaneazamk0507927@gmail.com" style="color: #fff; text-decoration: none; font-size: 18px;">
-      <i class="fas fa-envelope"></i>
-    </a>
-    <a href="https://www.linkedin.com/in/sulthan-e-azam-k-08235126b/" target="_blank" style="color: #fff; text-decoration: none; font-size: 18px;">
-        <i class="fab fa-linkedin"></i>
-    </a>
-    <a href="tel://+918660884069" style="color: #fff; font-size: 18px;">
-      <i class="fas fa-phone"></i>
-    </a>
-    <a href="./index.html" target="_blank" style="color: #fff; text-decoration: none; font-size: 18px;">
-        <i class="fas fa-home"></i>
-    </a>
-  </div>
-
-  <!-- Google Maps Location -->
-  <div style="margin-top: 20px;">
-    <a href="https://www.google.com/maps/place/Tea+Talkies+%26+Brew/@15.1527621,77.3747422,17z/data=!3m1!4b1!4m6!3m5!1s0x3bb6e5375dcdf413:0xbca32a4971b64263!8m2!3d15.1527621!4d77.3747422!16s%2Fg%2F11wp7rx7f4?entry=ttu&g_ep=EgoyMDI0MTIwMi4wIKXMDSoASAFQAw%3D%3D" 
-       target="_blank" 
-       style="color: #fff; text-decoration: none; font-size: 16px; background: #333; padding: 10px 15px; border-radius: 5px; display: inline-block;">
-      📍 Find Us on Google Maps
-    </a>
-  </div>
-</div>
-
-
-    </div>
-  </div>
-  <div style="text-align: center; margin-top: 40px; font-size: 12px;">
-    <p style="font-size: small; ">
-        &copy; <script>document.write(new Date().getFullYear());</script> Online Menu. All rights reserved by ❤
-        <a href="./index.html" style="font-size: small; text-decoration: none; ">Mr. Sulthan E Azam K</a>.
-      </p style="font-size: small; ">
-    <a href="#" style="color: #fff; margin-right: 10px; text-decoration: none;">Terms</a>
-    <a href="#" style="color: #fff; margin-right: 10px; text-decoration: none;">Privacy</a>
-    <a href="#" style="color: #fff; text-decoration: none;">Compliances</a>
-  </div>
-</footer>
-
-<script>
-  // Generate QR codes for AR links
-  const arLinks = [
-    "https://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/SulthanEAzamK/Tiller/main/Aeroplane.glb&mode=ar_only",
-    "https://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/SulthanEAzamK/Tiller/main/Assem2.glb&mode=ar_only",
-    "https://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/SulthanEAzamK/Tiller/main/calw_city_map.glb&mode=ar_only",
-    "https://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/SulthanEAzamK/Tiller/main/city_test.glb&mode=ar_only",
-    "https://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/SulthanEAzamK/Tiller/main/map_lviv_ukraine.glb&mode=ar_only"
-  ];
-
-  arLinks.forEach((link, i) => {
-    new QRious({
-      element: document.getElementById('qr' + (i + 1)),
-      value: link,
-      size: 200
-    });
-  });
-
-  const bg = document.getElementById('background-animation');
-
-window.addEventListener('mousemove', (e) => {
-  const x = e.clientX / window.innerWidth * 98;
-  const y = e.clientY / window.innerHeight * 100;
-
-  // Change the position of the radial-gradient based on cursor
-  bg.style.background = `radial-gradient(circle at ${x}% ${y}%, #ffefba, #ffffff)`;
-});
-
-</script>
-
-</body>
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-col">
+          <h4>Sulthan's 3D Models</h4>
+          <p style="line-height: 1.7">
+            AR &amp; 3D portfolio by Sulthan E Azam K — mechanical engineer
+            turned spatial experience creator.
+          </p>
+          <p style="margin-top: 10px">
+            <a href="tel:+918660884069"
+              ><i class="fas fa-phone"></i> +91 8660884069</a
+            >
+          </p>
+          <a
+            href="https://forms.gle/KiYZt6MmwvS6xwz18"
+            target="_blank"
+            style="
+              display: inline-block;
+              margin-top: 14px;
+              background: var(--accent);
+              color: #fff;
+              padding: 8px 18px;
+              border-radius: 8px;
+              text-decoration: none;
+              font-size: 0.82rem;
+            "
+            >Have a Question?</a
+          >
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Buy &amp; Sell</a></li>
+            <li><a href="#">Merchant</a></li>
+            <li><a href="#">Giving Back</a></li>
+            <li><a href="#">Help &amp; Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Main Persons</h4>
+          <ul>
+            <li>
+              <a
+                href="#"
+                style="
+                  color: #fff;
+                  text-decoration: none;
+                  background: #7c5cfc;
+                  padding: 5px 70px;
+                  border-radius: 5px;
+                  background-image: url(./images/allaha.png);
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  background-position: center;
+                "
+              ></a>
+            </li>
+            <li>
+              <a href="https://ali-akbar-k.github.io/PORTFOLIO/"
+                >Mr. Ali Akbar K</a
+              >
+            </li>
+            <li><a href="./index.html">Mr. Sulthan E Azam K</a></li>
+            <li><a href="https://gadequipments.in/">GAD Equipments</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-socials">
+            <a href="https://twitter.com" target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://facebook.com" target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="https://instagram.com" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="mailto:sulthaneazamk0507927@gmail.com"
+              ><i class="fas fa-envelope"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/sulthan-e-azam-k-08235126b/"
+              target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="tel:+918660884069"><i class="fas fa-phone"></i></a>
+            <a href="./index.html"><i class="fas fa-home"></i></a>
+          </div>
+          <div style="margin-top: 16px">
+            <a
+              href="https://www.google.com/maps/place/Tea+Talkies+%26+Brew"
+              target="_blank"
+              style="
+                color: var(--muted);
+                font-size: 0.82rem;
+                text-decoration: none;
+              "
+            >
+              📍 Find Us on Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copy">
+        <p>
+          &copy; <span id="yr"></span> Sulthan's 3D Models. All rights reserved
+          <a href="https://ali-akbar-k.github.io/PORTFOLIO/">Mr. Ali Akbar K</a>
+          &nbsp;|&nbsp; & 3D design made by ❤
+          <a href="./index.html">Mr. Sulthan E Azam K</a> &nbsp;|&nbsp;
+          <a href="#">Terms</a> &nbsp;|&nbsp;
+          <a href="#">Privacy</a>
+        </p>
+      </div>
+    </footer>
+    <script src="js/3d.js"></script>
+  </body>
 </html>
